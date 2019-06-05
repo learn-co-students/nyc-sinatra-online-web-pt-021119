@@ -44,7 +44,7 @@ figure_list = {
     },
     "Ada Lovelace" => {
     },
-    "Linus Torvalds" => { 
+    "Linus Torvalds" => {
     }
   }
 
@@ -65,6 +65,7 @@ title_list = {
   }
 
 title_list.each do |name, figure_hash|
+	binding.pry
   p = Title.new
   p.name = name
   p.save
