@@ -1,5 +1,6 @@
 class LandmarksController < ApplicationController
   # add controller methods
+
   get '/landmarks' do
     @landmarks = Landmark.all
     erb :'landmarks/index'
@@ -24,24 +25,19 @@ class LandmarksController < ApplicationController
   end
 
   post '/landmarks' do
-    @figure = Figure.create(params['landmark'])
-    
+    @landmark = Landmark.create(params['landmark'])
 
-    @figure.save
-    redirect to "/landmarks/#{@figure.id}"
+
+    @landmark.save
+    redirect to "/landmarks/#{@landmark.id}"
   end
 
   patch '/landmarks/:id' do
-    @figure = Figure.find_by_id(params[:id])
-    @figure.update(params[:figure])
-    unless params[:title][:name].empty?
-      @figure.titles << Title.create(params[:title])
-    end
-    unless params[:landmark][:name].empty?
-      @figure.landmarks << Landmark.create(params[:landmark])
-    end
-    @figure.save
-    redirect to "/landmarks/#{@figure.id}"
+    @landmark = Landmark.find_by_id(params[:id])
+    @landmark.update(params[:landmark])
+
+    @landmark.save
+    redirect to "/landmarks/#{@landmark.id}"
   end
 
 end
